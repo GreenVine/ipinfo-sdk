@@ -1,0 +1,36 @@
+language: node_js
+
+node_js: '6.10'
+
+cache:
+  directories:
+  - node_modules
+
+env:
+  global:
+  - COMMIT_HASH=${TRAVIS_COMMIT::8}
+  - COMMIT_TIME=`git log -1 --pretty=format:%ct`
+  - COMMIT_IDENTIFIER=${COMMIT_TIME}-${TRAVIS_COMMIT}
+
+jobs:
+  include:
+  - if: branch = master
+    env: NODE_ENV=production
+  - if: branch = develop
+    env: NODE_ENV=developent
+  - if: branch = staging
+    env: NODE_ENV=staging
+
+install:
+- npm run lint
+- npm install
+
+script: npm test
+
+deploy:
+  provider: npm
+  email: commits@codemy.fun
+  api_key: $NPM_DEPLOY_TOKEN
+  skip_cleanup: true
+  on:
+    tags: true

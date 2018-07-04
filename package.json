@@ -1,0 +1,70 @@
+{
+  "name": "ipinfo-sdk",
+  "version": "0.1.0",
+  "description": "Node.js SDK for ipinfo.io",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GreenVine/ipinfo-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GreenVine/ipinfo-sdk/issues"
+  },
+  "homepage": "https://github.com/GreenVine/ipinfo-sdk#readme",
+  "author": "Robin Liu <commits@codemy.fun>",
+  "license": "MIT",
+  "engines": {
+    "node": ">= 6.0.0"
+  },
+  "directories": {
+    "lib": "node_modules"
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist/",
+    "test": "mocha tests/**/*.spec.ts --require ts-node/register --reporter spec",
+    "lint+test": "npm run lint && mocha tests/**/*.spec.ts --require ts-node/register --reporter spec",
+    "lint": "tslint --project ./ src/**/*.ts tests/**/*.ts",
+    "lint:check": "tslint-config-prettier-check ./tslint.json",
+    "start": "node dist/index.js",
+    "watch": "tsc -w",
+    "serve": "nodemon -e ts --watch src --exec 'npm run build && npm run start'",
+    "prettify": "prettier --config ./package.json '**/*.ts'",
+    "prettify:fix": "prettier --config ./package.json '**/*.ts' --write",
+    "precommit": "lint-staged",
+    "prepare": "npm run build --declaration true --allowJs false"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "prettier": {
+    "singleQuote": true,
+    "printWidth": 100,
+    "arrowParens": "always"
+  },
+  "dependencies": {
+    "node-fetch": "^2.1.2",
+    "pjson": "^1.0.9",
+    "validate.js": "^0.12.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.4",
+    "@types/mocha": "^5.2.4",
+    "@types/node": "^10.5.1",
+    "@types/node-fetch": "^2.1.1",
+    "chai": "^4.1.2",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.2.0",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.17.5",
+    "prettier": "^1.13.7",
+    "ts-node": "^7.0.0",
+    "tslint": "^5.10.0",
+    "tslint-config-prettier": "^1.13.0",
+    "typescript": "^2.9.2"
+  }
+}
