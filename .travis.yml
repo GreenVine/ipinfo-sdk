@@ -22,8 +22,8 @@ jobs:
     env: NODE_ENV=staging
 
 install:
-- npm run lint
 - npm install
+- npm run lint
 
 script: npm test
 
