@@ -6,21 +6,6 @@ cache:
   directories:
   - node_modules
 
-env:
-  global:
-  - COMMIT_HASH=${TRAVIS_COMMIT::8}
-  - COMMIT_TIME=`git log -1 --pretty=format:%ct`
-  - COMMIT_IDENTIFIER=${COMMIT_TIME}-${TRAVIS_COMMIT}
-
-jobs:
-  include:
-  - if: branch = master
-    env: NODE_ENV=production
-  - if: branch = develop
-    env: NODE_ENV=developent
-  - if: branch = staging
-    env: NODE_ENV=staging
-
 install:
 - npm install
 - npm run lint
@@ -34,3 +19,4 @@ deploy:
   skip_cleanup: true
   on:
     tags: true
+    all_branches: true

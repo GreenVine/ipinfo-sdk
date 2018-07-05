@@ -1,6 +1,6 @@
 {
   "name": "ipinfo-sdk",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Node.js SDK for ipinfo.io",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -33,7 +33,7 @@
     "prettify": "prettier --config ./package.json '**/*.ts'",
     "prettify:fix": "prettier --config ./package.json '**/*.ts' --write",
     "precommit": "lint-staged",
-    "prepare": "npm run build --declaration true --allowJs false"
+    "prepare": "tsc --declaration true --allowJs false"
   },
   "lint-staged": {
     "*.ts": [
