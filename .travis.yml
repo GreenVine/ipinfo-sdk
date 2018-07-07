@@ -12,8 +12,11 @@ install:
 
 script: npm test
 
+after_success: npm run coverage
+
 deploy:
   provider: npm
+  tag: next
   email: commits@codemy.fun
   api_key: $NPM_DEPLOY_TOKEN
   skip_cleanup: true

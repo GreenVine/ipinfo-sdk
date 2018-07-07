@@ -12,7 +12,7 @@
       "dom",
       "es6"
     ],
-    "sourceMap": false,
+    "sourceMap": true,
     "allowJs": true,
     "strictNullChecks": true,
     "outDir": "./dist",

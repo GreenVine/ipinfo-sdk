@@ -4,6 +4,14 @@
   "description": "Node.js SDK for ipinfo.io",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "keywords": [
+    "ipinfo",
+    "geolocation",
+    "ip-lookup",
+    "ip-address",
+    "as-number",
+    "sdk"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/GreenVine/ipinfo-sdk.git"
@@ -23,9 +31,9 @@
   "scripts": {
     "build": "tsc",
     "clean": "rm -rf dist/",
-    "test": "mocha tests/**/*.spec.ts --require ts-node/register --reporter spec",
-    "lint+test": "npm run lint && mocha tests/**/*.spec.ts --require ts-node/register --reporter spec",
-    "lint": "tslint --project ./ src/**/*.ts tests/**/*.ts",
+    "test": "nyc mocha",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "lint": "tslint --project ./ src/**/*.ts test/**/*.ts",
     "lint:check": "tslint-config-prettier-check ./tslint.json",
     "start": "node dist/index.js",
     "watch": "tsc -w",
@@ -56,15 +64,37 @@
     "@types/mocha": "^5.2.4",
     "@types/node": "^10.5.1",
     "@types/node-fetch": "^2.1.1",
+    "@types/sinon": "^5.0.1",
+    "@types/sinon-stub-promise": "^2.1.3",
     "chai": "^4.1.2",
+    "coveralls": "^3.0.2",
     "husky": "^0.14.3",
     "lint-staged": "^7.2.0",
     "mocha": "^5.2.0",
     "nodemon": "^1.17.5",
+    "nyc": "^12.0.2",
     "prettier": "^1.13.7",
+    "sinon": "^6.1.2",
+    "sinon-stub-promise": "^4.0.0",
+    "source-map-support": "^0.5.6",
     "ts-node": "^7.0.0",
     "tslint": "^5.10.0",
     "tslint-config-prettier": "^1.13.0",
     "typescript": "^2.9.2"
+  },
+  "nyc": {
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
+    "exclude": [
+      "**/*.d.ts",
+      "**/*.spec.ts"
+    ],
+    "reporter": [
+      "text"
+    ],
+    "all": true,
+    "check-coverage": true
   }
 }
